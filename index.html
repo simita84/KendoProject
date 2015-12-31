@@ -1,0 +1,61 @@
+    <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Welcome to Kendo UI!</title>
+          
+            <!--  Twitter bootstrap -->
+            <link href="styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
+            <link href="styles/kendo.default.min.css" rel="stylesheet" type="text/css" />
+
+              <!-- jQuery JavaScript -->
+            <script src="js/jquery.min.js"></script>
+
+            <!-- Kendo UI combined JavaScript -->
+            <script src="js/kendo.web.min.js"></script>
+            
+             <!-- HTML element from which the DatePicker would be initialized -->
+           
+        <body class="container">
+            <div id="cars"> </div>  
+            
+             
+        <script>
+            $(document).ready(function(){
+            
+                var cars =[
+                    {year:2045,make:"Camry",model:"Toyota"},
+                    {year:2016,make:"CRV",model:"Honda"},
+                    {year:2012,make:"Fusion",model:"Ford"},
+                    {year:2012,make:"grant",model:"Tesla"},
+                    {year:2017,make:"grant",model:"Tesla"}  ,             
+                    {year:2012,make:"grant",model:"Tesla"} ,              
+                    {year:2010,make:"grant",model:"Tesla"}            
+                               
+                ];
+                
+            var carsDataSource = new kendo.data.DataSource({data:cars,
+                                                            pageSize:5,
+                                                            sort:{field:"year",dir:"ASC"}
+                                                           });
+            carsDataSource.read();   
+            
+           $("#cars").kendoGrid({
+            dataSource : carsDataSource,
+           columns:[
+               {field:'year',title:'YEAR'}, 
+               {field:'make',title:'MAKE'},
+               {field:'model',title:'MODEL'},
+               {command:["edit","delete"]}                  
+           ],
+           scrollable :false,
+           pageable :true,
+           sortable :true,
+           groupable:true,
+           filterable :true,
+           editable : "inline"
+           });        
+                
+            });    
+        </script>  
+        </body>
+        </html>
